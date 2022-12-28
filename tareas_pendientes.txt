@@ -1,0 +1,6 @@
+Aquí esta el ToDo list para el proyecto de reportes Quant Labs con streamlit
+
+###1.- Agregar descripciones cada gráfico de cada mes.###
+2.- Definir colores de graficos para hacerlo más dinamico.
+3.- Pensar en algun diseño para hacer más amigable/formal la página.
+4.- corregir gráfico de copy fx (Septiembre, Octubre, Noviembre) y cuenta 72116376 (Septiembre, Octubre,Noviembre)
