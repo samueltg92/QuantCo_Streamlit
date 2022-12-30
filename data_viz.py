@@ -692,7 +692,7 @@ if menu == '2022':
         submenu = st.sidebar.selectbox('Selecciona una opción', ('Acumulado', 'DeepAtlas CopyFx', 'DeepAtlas MT5', 'Roboforex 7369598', 'Roboforex 72116376', 'DeepAtlas vs EURUSD'))
 
         if submenu == 'Acumulado':
-            acumulado = 'Data/2022/4. Diciembre2022/calculos_finales.xlsx'
+            acumulado = 'Data/2022/5. Diciembre2022/calculos_finales.xlsx'
             acu = pd.read_excel(acumulado, sheet_name= 0)
             acu = acu.set_index('mdate')
             x = acu.index
@@ -734,7 +734,7 @@ if menu == '2022':
             st.write(' ')
 
         if submenu == 'DeepAtlas CopyFx':
-            roboforexMT4 = "Data/2022/4. Diciembre2022/Registro_de_operaciones_Roboforex_Diciembre2022.xlsx"
+            roboforexMT4 = "Data/2022/5. Diciembre2022/Registro_de_operaciones_Roboforex_Diciembre2022.xlsx"
             df = pd.read_excel(roboforexMT4)
             df = df.set_index('datetime')
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100
@@ -752,7 +752,7 @@ if menu == '2022':
             st.plotly_chart(fig2)
 
         if submenu == 'DeepAtlas MT5':
-            roboforexMT5 = "Data/2022/4. Diciembre2022/Registro_de_operaciones_RoboforexMT5_Diciembre2022.xlsx"
+            roboforexMT5 = "Data/2022/5. Diciembre2022/Registro_de_operaciones_RoboforexMT5_Diciembre2022.xlsx"
             df = pd.read_excel(roboforexMT5)
             df = df.set_index('datetime')
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100
@@ -770,7 +770,7 @@ if menu == '2022':
             st.write('- ')
 
         if submenu == 'Roboforex 7369598':
-            roboforex7369598 = 'Data/2022/4. Diciembre2022/Registro_de_operaciones_7369598.xlsx'
+            roboforex7369598 = 'Data/2022/5. Diciembre2022/Registro_de_operaciones_7369598.xlsx'
             df = pd.read_excel(roboforex7369598, sheet_name= 0)
             df = df.set_index('datetime')
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100            
@@ -790,7 +790,7 @@ if menu == '2022':
             st.plotly_chart(fig3)
 
         if submenu == 'Roboforex 72116376':
-            roboforex72116376 = 'Data/2022/4. Diciembre2022/Registro_de_operaciones_72116376.xlsx'
+            roboforex72116376 = 'Data/2022/5. Diciembre2022/Registro_de_operaciones_72116376.xlsx'
             df = pd.read_excel(roboforex72116376, sheet_name= 0)
             df = df.set_index('datetime')
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100            
@@ -814,7 +814,7 @@ if menu == '2022':
         if submenu == 'DeepAtlas vs EURUSD':
             st.write('''Este mes se logró un alpha de  con respecto al par de divisas EURUSD, lo cuál muestra que la estrategia de DeepAtlas CopyFx
             es más rentable que el par de divisas en el que opera.''')
-            benchmark = "Data/2022/4. Diciembre/DAMT5_vs_EURUSD_Diciembre2022.html"
+            benchmark = "Data/2022/5. Diciembre/DAMT5_vs_EURUSD_Diciembre2022.html"
             html = open(benchmark, 'r', encoding='utf-8').read()
             components.html(html, height=7000, width=1200)
 
