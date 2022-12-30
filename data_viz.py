@@ -814,7 +814,7 @@ if menu == '2022':
         if submenu == 'DeepAtlas vs EURUSD':
             st.write('''Este mes se logró un alpha de  con respecto al par de divisas EURUSD, lo cuál muestra que la estrategia de DeepAtlas CopyFx
             es más rentable que el par de divisas en el que opera.''')
-            benchmark = "Data/2022/5. Diciembre/DAMT4_vs_EURUSD_Diciembre2022.html"
+            benchmark = "Data/2022/5. Diciembre2022/DAMT4_vs_EURUSD_Diciembre2022.html"
             html = open(benchmark, 'r', encoding='utf-8').read()
             components.html(html, height=7000, width=1200)
 
