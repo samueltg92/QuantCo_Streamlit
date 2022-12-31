@@ -688,7 +688,7 @@ if menu == '2022':
             
 #---------------------------------DICIEMBRE---------------------------------#
     if meses == 'Diciembre':
-        st.subheader('Resultados en proceso...')
+        
         submenu = st.sidebar.selectbox('Selecciona una opción', ('Acumulado', 'DeepAtlas CopyFx', 'DeepAtlas MT5', 'Roboforex 7369598', 'Roboforex 72116376', 'DeepAtlas vs EURUSD'))
 
         if submenu == 'Acumulado':
@@ -706,20 +706,26 @@ if menu == '2022':
             fig1.update_layout(title='Balance Acumulado Diciembre 2022', xaxis_title='Fecha', yaxis_title='Balance')
             st.plotly_chart(fig1)
 
-            st.write(''' ''')
+            st.write('''Para el mes de diciembre se retiraron $35.580 usd, lo cual representó una reducción del 72% del balance general del portafolio interno. Debido a esto, 
+                     se tuvieron que pausar la estrategias de DeepAtlasMT5 y las dos cuentas de Roboforex donde se diversificaba el capital en diferentes operadores.''')
 
             fig2 = go.Figure(go.Scatter(x=x, y=z, mode='lines', name='Crecimiento porcentual', line_shape='spline'))
             fig2.update_layout(title='Crecimiento porcentual diciembre 2022', xaxis_title='Fecha', yaxis_title='Crecimiento (%)')
             st.plotly_chart(fig2)
 
-            st.write('')
+            st.write('''
+                     A pesar del retiro del 72% del balance general, se logró un crecimiento porcentual de 2.02%. Esto, gracias a la venta de un portafolio de algortimos, la venta de
+                     nuestro algoritmo de tick scalping para las cuentas de empresas de fondeo y las utilidades generadas por DeepAtlas CopyFx.
+                     ''')
 
 
             fig3 = go.Figure(go.Scatter(x=x, y=w, mode='lines', name='Drawdown máximo', line_shape='spline'))
             fig3.update_layout(title='Drawdown máximo Diciembre 2022', xaxis_title='Fecha', yaxis_title='Drawdown (%)')
             st.plotly_chart(fig3)
 
-            st.write(''' ''')
+            st.write(''' 
+                    Para este mes se logró contener el drawdown máximo a un -0.77%, lo cual es un buen resultado, ya que de esta manera se pudo mantener el riesgo de pérdida bajo. 
+                     ''')
 
             
             fig4 = make_subplots(rows=1, cols=1, shared_xaxes=True, subplot_titles=('Annual return rate acumulado'))
@@ -728,19 +734,27 @@ if menu == '2022':
             fig4.update_layout(title='Annual Return Rate x 80dias Diciembre 2022', xaxis_title='Fecha', yaxis_title='Annual Return Rate')
             st.plotly_chart(fig4)
 
-            st.subheader(':blue[Retornos por debajo de lo proyectado]')
-            st.write(' ')
-            st.subheader(':blue[Proyección basada en resultados del mes de diciembre]')
-            st.write(' ')
+            st.subheader(':blue[Retornos según lo proyectado]')
+            st.write('''
+                     Para el mes de diciembre se logró cerrar el año con un retorno según lo proyectado desde el mes de agosto de 2022 (2.02% mensual), lo cual representó un cumplimiento de proyección
+                     de final de año al 94.9%. Esto quiere decir que de un total de 8.09% proyectado a final de año, se logró cerrar con un 7.68% de retorno.
+                     ''')
 
         if submenu == 'DeepAtlas CopyFx':
             roboforexMT4 = "Data/2022/5. Diciembre2022/Registro_de_operaciones_Roboforex_Diciembre2022.xlsx"
-            df = pd.read_excel(roboforexMT4)
+            roboforexMT4DD = "Data/2022/Acumulado/DeepAtlasCopyFx.xlsx"
+            df = pd.read_excel(roboforexMT4, sheet_name= 0)
             df = df.set_index('datetime')
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100
+            
+            df2 = pd.read_excel(roboforexMT4DD, sheet_name= 0)
+            df2 = df2.set_index('datetime')            
+            
             x = df.index
+            x2 = df2.index
             y = df['Balance']
             y2 = df['pct_change']
+            y3 = df2['max_dd'] *100
 
             fig = go.Figure(go.Scatter(x=x, y=y, mode='lines', name='Balance', line_shape='spline'))
             fig.update_layout(title='Crecimiento del balance DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Crecimiento ($)')
@@ -748,8 +762,28 @@ if menu == '2022':
             fig2 = go.Figure(go.Scatter(x=x, y=y2, mode='lines', name='Crecimiento', line_shape='hvh'))
             fig2.update_layout(title='Crecimiento porcentual DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Crecimiento (%)')
             
+            fig3 = go.Figure(go.Scatter(x=x2, y=y3, mode='lines', name='Drawdown máximo', line_shape='spline'))
+            fig3.update_layout(title='Drawdown máximo DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Drawdown (%)')
+            
             st.plotly_chart(fig)
+            st.write('''
+                    El mes de diciembre para la cuenta de DeepAtlas CopyFx fue un mes de crecimiento, a pesar de un retiro de $1.000 usd
+                    para un cliente de The Quant Company. Este retiro fue compensado con un depósito por el mismo valor, por concepto de 
+                    la venta de un algoritmo de tick scalping para empresas de fondeo.
+                    ''')
+            
             st.plotly_chart(fig2)
+            st.write('''
+                    El crecimiento para este mes, fue de 4.34%, lo cual representa un crecimiento de un 1.38% menos que el mes anterior.
+                    Esta baja en el crecimiento, fue debido a la baja liquidez en el mercado operado que se traduce en baja volatilidad, por
+                    lo cual, DeepAtlas, opera en una menor frecuencia.
+                    ''')
+            
+            st.plotly_chart(fig3)
+            st.write('''
+                    El drawdown máximo para este mes, fue de -0.69%, lo cual es un buen resultado, ya que de esta manera se pudo 
+                    mantener el riesgo de pérdida bajo y teniendo en cuenta los resultados de los 4 meses pasados, fue el drawdown más bajo.
+                     ''')
 
         if submenu == 'DeepAtlas MT5':
             roboforexMT5 = "Data/2022/5. Diciembre2022/Registro_de_operaciones_RoboforexMT5_Diciembre2022.xlsx"
@@ -763,11 +797,18 @@ if menu == '2022':
             fig.update_layout(title='Crecimiento del balance DeepAtlas MT5', xaxis_title='Fecha', yaxis_title='Crecimiento ($)')
             fig2 = go.Figure(go.Scatter(x=x, y=y2, mode='lines', name='Crecimiento', line_shape='spline'))
             fig2.update_layout(title='Crecimiento porcentual DeepAtlas MT5', xaxis_title='Fecha', yaxis_title='Crecimiento (%)')
+            
             st.plotly_chart(fig)
+            st.write('''
+                    Este mes, no se obtuvieron resultados de crecimiento en la cuenta diversificada de DeepAtlas MT5, debido a que se
+                    generó un retiro por parte de un cliente, de la totalidad del capital asignado a esta cuenta.
+                     ''')
+            
             st.plotly_chart(fig2)
-
-            st.write('- ')
-            st.write('- ')
+            st.write('''
+                    Este mes, no se obtuvieron resultados de crecimiento en la cuenta diversificada de DeepAtlas MT5, debido a que se
+                    generó un retiro por parte de un cliente, de la totalidad del capital asignado a esta cuenta.
+                     ''')
 
         if submenu == 'Roboforex 7369598':
             roboforex7369598 = 'Data/2022/5. Diciembre2022/Registro_de_operaciones_7369598.xlsx'
