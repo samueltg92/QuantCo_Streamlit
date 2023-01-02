@@ -827,8 +827,19 @@ if menu == '2022':
             fig3 = px.pie(df, values='Balance', names='Item', title='Activos operados Roboforex 7369598')
 
             st.plotly_chart(fig)
+            st.write('''
+                    Este mes, no se obtuvieron resultados de crecimiento en la cuenta diversificada #7369598 de Roboforex, debido a que se
+                    generó un retiro por parte de un cliente, de la totalidad del capital asignado a esta cuenta.
+                     ''')
+            
             st.plotly_chart(fig2)
+            st.write('''
+                    Este mes, no se obtuvieron resultados de crecimiento en la cuenta diversificada #7369598 de Roboforex, debido a que se
+                    generó un retiro por parte de un cliente, de la totalidad del capital asignado a esta cuenta.
+                     ''')            
+            
             st.plotly_chart(fig3)
+
 
         if submenu == 'Roboforex 72116376':
             roboforex72116376 = 'Data/2022/5. Diciembre2022/Registro_de_operaciones_72116376.xlsx'
@@ -849,11 +860,21 @@ if menu == '2022':
             fig3 = px.pie(df, values='Balance', names='Item', title='Activos operados roboforex72116376')
 
             st.plotly_chart(fig)
+            st.write('''
+                    Este mes, no se obtuvieron resultados de crecimiento en la cuenta diversificada #72116376 de Roboforex, debido a que se
+                    generó un retiro por parte de un cliente, de la totalidad del capital asignado a esta cuenta.
+                     ''')
+                           
             st.plotly_chart(fig2)
+            st.write('''
+                    Este mes, no se obtuvieron resultados de crecimiento en la cuenta diversificada #72116376 de Roboforex, debido a que se
+                    generó un retiro por parte de un cliente, de la totalidad del capital asignado a esta cuenta.
+                     ''')   
+                        
             st.plotly_chart(fig3) 
 
         if submenu == 'DeepAtlas vs EURUSD':
-            st.write('''Este mes se logró un alpha de  con respecto al par de divisas EURUSD, lo cuál muestra que la estrategia de DeepAtlas CopyFx
+            st.write('''Este mes se logró un alpha de 1.84% con respecto al par de divisas EURUSD, lo cuál muestra que la estrategia de DeepAtlas CopyFx
             es más rentable que el par de divisas en el que opera.''')
             benchmark = "Data/2022/5. Diciembre2022/DAMT4_vs_EURUSD_Diciembre2022.html"
             html = open(benchmark, 'r', encoding='utf-8').read()
