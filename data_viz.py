@@ -687,10 +687,199 @@ if menu == '2022':
             components.html(html, height=7000, width=1200) 
             
 #---------------------------------DICIEMBRE---------------------------------#
-    if meses == 'Diciembre':
-        st.subheader('Resultados en proceso...')
-        submenu = st.sidebar.selectbox('Selecciona una opción', ('Acumulado', 'DeepAtlas CopyFx', 'DeepAtlas MT5', 'Binance', 'Roboforex 7369598', 'Roboforex 72116376', 'DeepAtlas vs EURUSD'))
-           
+if meses == 'Diciembre':
+        
+        submenu = st.sidebar.selectbox('Selecciona una opción', ('Acumulado', 'DeepAtlas CopyFx', 'DeepAtlas MT5', 'Roboforex 7369598', 'Roboforex 72116376', 'DeepAtlas vs EURUSD'))
+
+        if submenu == 'Acumulado':
+            acumulado = 'Data/2022/5. Diciembre2022/calculos_finales.xlsx'
+            acu = pd.read_excel(acumulado, sheet_name= 0)
+            acu = acu.set_index('mdate')
+            x = acu.index
+            y = acu['Balance']
+            z = acu['d_ret']
+            w = acu['max_dd']
+            v = acu['ARR x 80dias']
+            u = acu['ARR x 80dias acu']
+
+            fig1 = go.Figure(go.Scatter(x=x, y=y, mode='lines', name='Balance', line_shape='spline'))
+            fig1.update_layout(title='Balance Acumulado Diciembre 2022', xaxis_title='Fecha', yaxis_title='Balance')
+            st.plotly_chart(fig1)
+
+            st.write('''Para el mes de diciembre se retiraron $35.580 usd, lo cual representó una reducción del 72% del balance general del portafolio interno. Debido a esto, 
+                     se tuvieron que pausar la estrategias de DeepAtlasMT5 y las dos cuentas de Roboforex donde se diversificaba el capital en diferentes operadores.''')
+
+            fig2 = go.Figure(go.Scatter(x=x, y=z, mode='lines', name='Crecimiento porcentual', line_shape='spline'))
+            fig2.update_layout(title='Crecimiento porcentual diciembre 2022', xaxis_title='Fecha', yaxis_title='Crecimiento (%)')
+            st.plotly_chart(fig2)
+
+            st.write('''
+                     A pesar del retiro del 72% del balance general, se logró un crecimiento porcentual de 2.02%. Esto, gracias a la venta de un portafolio de algortimos, la venta de
+                     nuestro algoritmo de tick scalping para las cuentas de empresas de fondeo y las utilidades generadas por DeepAtlas CopyFx.
+                     ''')
+
+
+            fig3 = go.Figure(go.Scatter(x=x, y=w, mode='lines', name='Drawdown máximo', line_shape='spline'))
+            fig3.update_layout(title='Drawdown máximo Diciembre 2022', xaxis_title='Fecha', yaxis_title='Drawdown (%)')
+            st.plotly_chart(fig3)
+
+            st.write(''' 
+                    Para este mes se logró contener el drawdown máximo a un -0.77%, lo cual es un buen resultado, ya que de esta manera se pudo mantener el riesgo de pérdida bajo. 
+                     ''')
+
+            
+            fig4 = make_subplots(rows=1, cols=1, shared_xaxes=True, subplot_titles=('Annual return rate acumulado'))
+            fig4.add_trace(go.Scatter(x=x, y=v, mode='lines', name='Annual Return Rate x 80dias', line_shape='spline'))
+            fig4.add_trace(go.Scatter(x=x, y=u, mode='lines', name='Retorno acumulado', line_shape='spline', line = dict(color='red')))
+            fig4.update_layout(title='Annual Return Rate x 80dias Diciembre 2022', xaxis_title='Fecha', yaxis_title='Annual Return Rate')
+            st.plotly_chart(fig4)
+
+            st.subheader(':blue[Retornos según lo proyectado]')
+            st.write('''
+                     Para el mes de diciembre se logró cerrar el año con un retorno según lo proyectado desde el mes de agosto de 2022 (2.02% mensual), lo cual representó un cumplimiento de proyección
+                     de final de año al 94.9%. Esto quiere decir que de un total de 8.09% proyectado a final de año, se logró cerrar con un 7.68% de retorno.
+                     ''')
+
+        if submenu == 'DeepAtlas CopyFx':
+            roboforexMT4 = "Data/2022/5. Diciembre2022/Registro_de_operaciones_Roboforex_Diciembre2022.xlsx"
+            roboforexMT4DD = "Data/2022/Acumulado/DeepAtlasCopyFx.xlsx"
+            df = pd.read_excel(roboforexMT4, sheet_name= 0)
+            df = df.set_index('datetime')
+            df['pct_change'] = df['Balance'].pct_change().cumsum() *100
+            
+            df2 = pd.read_excel(roboforexMT4DD, sheet_name= 0)
+            df2 = df2.set_index('datetime')            
+            
+            x = df.index
+            x2 = df2.index
+            y = df['Balance']
+            y2 = df['pct_change']
+            y3 = df2['max_dd'] *100
+
+            fig = go.Figure(go.Scatter(x=x, y=y, mode='lines', name='Balance', line_shape='spline'))
+            fig.update_layout(title='Crecimiento del balance DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Crecimiento ($)')
+
+            fig2 = go.Figure(go.Scatter(x=x, y=y2, mode='lines', name='Crecimiento', line_shape='hvh'))
+            fig2.update_layout(title='Crecimiento porcentual DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Crecimiento (%)')
+            
+            fig3 = go.Figure(go.Scatter(x=x2, y=y3, mode='lines', name='Drawdown máximo', line_shape='spline'))
+            fig3.update_layout(title='Drawdown máximo DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Drawdown (%)')
+            
+            st.plotly_chart(fig)
+            st.write('''
+                    El mes de diciembre para la cuenta de DeepAtlas CopyFx fue un mes de crecimiento, a pesar de un retiro de $1.000 usd
+                    para un cliente de The Quant Company. Este retiro fue compensado con un depósito por el mismo valor, por concepto de 
+                    la venta de un algoritmo de tick scalping para empresas de fondeo.
+                    ''')
+            
+            st.plotly_chart(fig2)
+            st.write('''
+                    El crecimiento para este mes, fue de 4.34%, lo cual representa un crecimiento de un 1.38% menos que el mes anterior.
+                    Esta baja en el crecimiento, fue debido a la baja liquidez en el mercado operado que se traduce en baja volatilidad, por
+                    lo cual, DeepAtlas, opera en una menor frecuencia.
+                    ''')
+            
+            st.plotly_chart(fig3)
+            st.write('''
+                    El drawdown máximo para este mes, fue de -0.69%, lo cual es un buen resultado, ya que de esta manera se pudo 
+                    mantener el riesgo de pérdida bajo y teniendo en cuenta los resultados de los 4 meses pasados, fue el drawdown más bajo.
+                     ''')
+
+        if submenu == 'DeepAtlas MT5':
+            roboforexMT5 = "Data/2022/5. Diciembre2022/Registro_de_operaciones_RoboforexMT5_Diciembre2022.xlsx"
+            df = pd.read_excel(roboforexMT5)
+            df = df.set_index('datetime')
+            df['pct_change'] = df['Balance'].pct_change().cumsum() *100
+            x = df.index
+            y = df['Balance']
+            y2 = df['pct_change']
+            fig = go.Figure(go.Scatter(x=x, y=y, mode='lines', name='Balance', line_shape='spline'))
+            fig.update_layout(title='Crecimiento del balance DeepAtlas MT5', xaxis_title='Fecha', yaxis_title='Crecimiento ($)')
+            fig2 = go.Figure(go.Scatter(x=x, y=y2, mode='lines', name='Crecimiento', line_shape='spline'))
+            fig2.update_layout(title='Crecimiento porcentual DeepAtlas MT5', xaxis_title='Fecha', yaxis_title='Crecimiento (%)')
+            
+            st.plotly_chart(fig)
+            st.write('''
+                    Este mes, no se obtuvieron resultados de crecimiento en la cuenta diversificada de DeepAtlas MT5, debido a que se
+                    generó un retiro por parte de un cliente, de la totalidad del capital asignado a esta cuenta.
+                     ''')
+            
+            st.plotly_chart(fig2)
+            st.write('''
+                    Este mes, no se obtuvieron resultados de crecimiento en la cuenta diversificada de DeepAtlas MT5, debido a que se
+                    generó un retiro por parte de un cliente, de la totalidad del capital asignado a esta cuenta.
+                     ''')
+
+        if submenu == 'Roboforex 7369598':
+            roboforex7369598 = 'Data/2022/5. Diciembre2022/Registro_de_operaciones_7369598.xlsx'
+            df = pd.read_excel(roboforex7369598, sheet_name= 0)
+            df = df.set_index('datetime')
+            df['pct_change'] = df['Balance'].pct_change().cumsum() *100            
+            x = df.index
+            y = df['Balance']
+            y2 = df['pct_change']
+
+            fig = go.Figure(go.Scatter(x=x, y=y, mode='lines', name='Balance', line_shape='spline'))
+            fig.update_layout(title='Crecimiento del balance Roboforex 7369598', xaxis_title='Fecha', yaxis_title='Crecimiento ($)')
+
+            fig2 = go.Figure(go.Scatter(x=x, y=y2, mode='lines', name='Crecimiento', line_shape='spline'))
+            fig2.update_layout(title='Crecimiento porcentual Roboforex 7369598', xaxis_title='Fecha', yaxis_title='Crecimiento (%)')
+            fig3 = px.pie(df, values='Balance', names='Item', title='Activos operados Roboforex 7369598')
+
+            st.plotly_chart(fig)
+            st.write('''
+                    Este mes, no se obtuvieron resultados de crecimiento en la cuenta diversificada #7369598 de Roboforex, debido a que se
+                    generó un retiro por parte de un cliente, de la totalidad del capital asignado a esta cuenta.
+                     ''')
+            
+            st.plotly_chart(fig2)
+            st.write('''
+                    Este mes, no se obtuvieron resultados de crecimiento en la cuenta diversificada #7369598 de Roboforex, debido a que se
+                    generó un retiro por parte de un cliente, de la totalidad del capital asignado a esta cuenta.
+                     ''')            
+            
+            st.plotly_chart(fig3)
+
+
+        if submenu == 'Roboforex 72116376':
+            roboforex72116376 = 'Data/2022/5. Diciembre2022/Registro_de_operaciones_72116376.xlsx'
+            df = pd.read_excel(roboforex72116376, sheet_name= 0)
+            df = df.set_index('datetime')
+            df['pct_change'] = df['Balance'].pct_change().cumsum() *100            
+            x = df.index
+            y = df['Balance']
+            y2= df['pct_change']
+            # y2 = df['pct_change'].resample('D').sum()
+
+
+            fig = go.Figure(go.Scatter(x=x, y=y, mode='lines', name='Balance', line_shape='spline'))
+            fig.update_layout(title='Crecimiento del balance roboforex72116376', xaxis_title='Fecha', yaxis_title='Crecimiento ($)')
+
+            fig2 = go.Figure(go.Scatter(x=x, y=y2, mode='lines', name='Crecimiento', line_shape='spline'))
+            fig2.update_layout(title='Crecimiento porcentual roboforex72116376', xaxis_title='Fecha', yaxis_title='Crecimiento (%)')
+            fig3 = px.pie(df, values='Balance', names='Item', title='Activos operados roboforex72116376')
+
+            st.plotly_chart(fig)
+            st.write('''
+                    Este mes, no se obtuvieron resultados de crecimiento en la cuenta diversificada #72116376 de Roboforex, debido a que se
+                    generó un retiro por parte de un cliente, de la totalidad del capital asignado a esta cuenta.
+                     ''')
+                           
+            st.plotly_chart(fig2)
+            st.write('''
+                    Este mes, no se obtuvieron resultados de crecimiento en la cuenta diversificada #72116376 de Roboforex, debido a que se
+                    generó un retiro por parte de un cliente, de la totalidad del capital asignado a esta cuenta.
+                     ''')   
+                        
+            st.plotly_chart(fig3) 
+
+        if submenu == 'DeepAtlas vs EURUSD':
+            st.write('''Este mes se logró un alpha de 1.84% con respecto al par de divisas EURUSD, lo cuál muestra que la estrategia de DeepAtlas CopyFx
+            es más rentable que el par de divisas en el que opera.''')
+            benchmark = "Data/2022/5. Diciembre2022/DAMT4_vs_EURUSD_Diciembre2022.html"
+            html = open(benchmark, 'r', encoding='utf-8').read()
+            components.html(html, height=7000, width=1200)
+
 # if menu == '2023':
 #     meses = st.sidebar.selectbox('Selecciona un mes', ('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'))
     
