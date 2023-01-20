@@ -687,7 +687,7 @@ if menu == '2022':
             components.html(html, height=7000, width=1200) 
             
 #---------------------------------DICIEMBRE---------------------------------#
-if meses == 'Diciembre':
+    if meses == 'Diciembre':
         
         submenu = st.sidebar.selectbox('Selecciona una opción', ('Acumulado', 'DeepAtlas CopyFx', 'DeepAtlas MT5', 'Roboforex 7369598', 'Roboforex 72116376', 'DeepAtlas vs EURUSD'))
 
