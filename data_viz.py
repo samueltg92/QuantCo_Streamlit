@@ -731,7 +731,7 @@ if meses == 'Diciembre':
             fig4 = make_subplots(rows=1, cols=1, shared_xaxes=True, subplot_titles=('Annual return rate acumulado'))
             fig4.add_trace(go.Scatter(x=x, y=v, mode='lines', name='Annual Return Rate x 80dias', line_shape='spline'))
             fig4.add_trace(go.Scatter(x=x, y=u, mode='lines', name='Retorno acumulado', line_shape='spline', line = dict(color='red')))
-            fig4.update_layout(title='Annual Return Rate x 80dias Diciembre 2022', xaxis_title='Fecha', yaxis_title='Annual Return Rate')
+            fig4.update_layout(title='Annual Return Rate x 80dias Diciembre 2022 (%)', xaxis_title='Fecha', yaxis_title='Annual Return Rate')
             st.plotly_chart(fig4)
 
             st.subheader(':blue[Retornos según lo proyectado]')
