@@ -878,6 +878,8 @@ if menu == '2022':
             html = open(benchmark, 'r', encoding='utf-8').read()
             components.html(html, height=7000, width=1200)
 
+#------------------------------------2023-------------------------------------#
+
 if menu == '2023':
     meses = st.sidebar.selectbox('Selecciona un mes', ('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'))
     
@@ -894,18 +896,24 @@ if menu == '2023':
         if submenu == 'DeepAtlas CopyFx':
             roboforexMT4 = "Data/2023/1. Enero 2023/Registro_de_operaciones_Roboforex_Enero2023.xlsx"
             roboforexMT4DD = "Data/2023/1. Enero 2023/calculos_finales_Enero2023.xlsx"
+            
             df = pd.read_excel(roboforexMT4, sheet_name= 0)
             df = df.set_index('datetime')
-            df['pct_change'] = df['Balance'].pct_change().cumsum() *100
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
+
+            # df['pct_change'] = df['Balance'].pct_change().cumsum() *100
             
             df2 = pd.read_excel(roboforexMT4DD, sheet_name= 1)
-            df2 = df2.set_index('datetime')            
+            df2 = df2.set_index('datetime')
+            df2.index = pd.to_datetime(df2.index)            
+            df2 = df2.resample('D').last().dropna()
             
             x = df.index
             x2 = df2.index
             y = df['Balance']
-            y2 = df['pct_change']
-            y3 = df2[df2['d_ret'] < 0]
+            y2 = df['Balance'].pct_change().cumsum() *100
+            y3 = y2.loc[y2 < 0] 
 
             fig = go.Figure(go.Scatter(x=x, y=y, mode='lines', name='Balance', line_shape='spline'))
             fig.update_layout(title='Crecimiento del balance DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Crecimiento ($)')
@@ -915,20 +923,22 @@ if menu == '2023':
             
             fig3 = go.Figure(go.Scatter(x=x2, y=y3, mode='lines', name='Drawdown máximo', line_shape='spline'))
             fig3.update_layout(title='Drawdown máximo DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Drawdown (%)')
+                      
             
             st.plotly_chart(fig)
-            st.write('''
-                    pass.
-                    ''')
+
             
             st.plotly_chart(fig2)
             st.write('''
-                    pass.
+                    El mes de enero para la cuenta de DeepAtlas CopyFx fue un mes de crecimiento contínuo, se logró crecer en 803 dólares en total de la cuenta, lo cual
+                    representó un crecimiento total del 7.50%.
                     ''')
             
             st.plotly_chart(fig3)
-            st.write('''
-                    pass.
+            st.write(''' 
+                    El drawdown máximo para este mes, fue de -17.98%, esto es una cifra relativamente alta que se debió a unas operaciones
+                    que se dejaron abiertas al momento de una noticia de alto impacto, esto generó una volatilidad alta durante media semana y 
+                    de esta manera nos afectó ese resultado. 
                      ''')
 
         if submenu == 'DeepAtlas vs EURUSD':
