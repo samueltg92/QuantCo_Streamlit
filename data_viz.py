@@ -139,7 +139,7 @@ if menu == '2022':
                      ''')
             
             fig3 = go.Figure(go.Scatter(x=x, y=w, mode='lines', name='Annual Return Rate x 80dias', line_shape='spline'))
-            fig3.update_layout(title='Annual Return Rate x 80dias Agosto 2022 (%)', xaxis_title='Fecha', yaxis_title='Annual Return Rate')
+            fig3.update_layout(title='Annual Return Rate x 80dias Agosto 2022', xaxis_title='Fecha', yaxis_title='Annual Return Rate')
             st.plotly_chart(fig3)
             
             st.subheader('''
@@ -257,7 +257,7 @@ if menu == '2022':
             fig4 = make_subplots(rows=1, cols=1, shared_xaxes=True, subplot_titles=('Annual return rate acumulado'))
             fig4.add_trace(go.Scatter(x=x, y=v, mode='lines', name='Annual Return Rate x 80dias', line_shape='spline'))
             fig4.add_trace(go.Scatter(x=x, y=u, mode='lines', name='Retorno acumulado', line_shape='spline', line = dict(color='red')))
-            fig4.update_layout(title='Annual Return Rate x 80dias Septiembre 2022 (%)', xaxis_title='Fecha', yaxis_title='Annual Return Rate')
+            fig4.update_layout(title='Annual Return Rate x 80dias Septiembre 2022', xaxis_title='Fecha', yaxis_title='Annual Return Rate')
             st.plotly_chart(fig4)
             
             st.subheader(':blue[Retornos por debajo de lo proyectado]')
@@ -431,7 +431,7 @@ if menu == '2022':
             fig4 = make_subplots(rows=1, cols=1, shared_xaxes=True, subplot_titles=('Annual return rate acumulado'))
             fig4.add_trace(go.Scatter(x=x, y=v, mode='lines', name='Annual Return Rate x 80dias', line_shape='spline'))
             fig4.add_trace(go.Scatter(x=x, y=u, mode='lines', name='Retorno acumulado', line_shape='spline', line = dict(color='red')))
-            fig4.update_layout(title='Annual Return Rate x 80dias Octubre 2022 (%)', xaxis_title='Fecha', yaxis_title='Annual Return Rate')
+            fig4.update_layout(title='Annual Return Rate x 80dias Octubre 2022', xaxis_title='Fecha', yaxis_title='Annual Return Rate')
             st.plotly_chart(fig4)
 
             st.subheader(':blue[Retornos por encima de lo proyectado]')
@@ -579,13 +579,13 @@ if menu == '2022':
             fig4 = make_subplots(rows=1, cols=1, shared_xaxes=True, subplot_titles=('Annual return rate acumulado'))
             fig4.add_trace(go.Scatter(x=x, y=v, mode='lines', name='Annual Return Rate x 80dias', line_shape='spline'))
             fig4.add_trace(go.Scatter(x=x, y=u, mode='lines', name='Retorno acumulado', line_shape='spline', line = dict(color='red')))
-            fig4.update_layout(title='Annual Return Rate x 80dias Noviembre 2022 (%)', xaxis_title='Fecha', yaxis_title='Annual Return Rate')
+            fig4.update_layout(title='Annual Return Rate x 80dias Noviembre 2022', xaxis_title='Fecha', yaxis_title='Annual Return Rate')
             st.plotly_chart(fig4)
 
             st.subheader(':blue[Retornos por debajo de lo proyectado]')
             st.write('El mes de noviembre no cumplió con el retorno proyectado para este mes, debido a retiros necesarios para reinvertir en infraestructura necesaria.')
-            st.subheader(':blue[Proyección basada en resultados del mes de noviembre]')
-            st.write('La proyección dada se da basada en el 2.02% generado en el mes de noviembre, mes en el que se inicia operaciones en el año 2022. ')
+            st.subheader(':blue[Proyección basada en resultados del mes de octubre]')
+            st.write('La proyección dada se da basada en el 2.02% generado en el mes de octubre, mes en el que se inicia operaciones en el año 2022. ')
 
         if submenu == 'DeepAtlas CopyFx':
             roboforexMT4 = "Data/2022/4. Noviembre2022/Registro_de_operaciones_Roboforex_Noviembre2022.xlsx"
@@ -688,9 +688,7 @@ if menu == '2022':
             
 #---------------------------------DICIEMBRE---------------------------------#
     if meses == 'Diciembre':
-        
         submenu = st.sidebar.selectbox('Selecciona una opción', ('Acumulado', 'DeepAtlas CopyFx', 'DeepAtlas MT5', 'Roboforex 7369598', 'Roboforex 72116376', 'DeepAtlas vs EURUSD'))
-
         if submenu == 'Acumulado':
             acumulado = 'Data/2022/5. Diciembre2022/calculos_finales.xlsx'
             acu = pd.read_excel(acumulado, sheet_name= 0)
@@ -731,7 +729,7 @@ if menu == '2022':
             fig4 = make_subplots(rows=1, cols=1, shared_xaxes=True, subplot_titles=('Annual return rate acumulado'))
             fig4.add_trace(go.Scatter(x=x, y=v, mode='lines', name='Annual Return Rate x 80dias', line_shape='spline'))
             fig4.add_trace(go.Scatter(x=x, y=u, mode='lines', name='Retorno acumulado', line_shape='spline', line = dict(color='red')))
-            fig4.update_layout(title='Annual Return Rate x 80dias Diciembre 2022 (%)', xaxis_title='Fecha', yaxis_title='Annual Return Rate')
+            fig4.update_layout(title='Annual Return Rate x 80dias Diciembre 2022', xaxis_title='Fecha', yaxis_title='Annual Return Rate')
             st.plotly_chart(fig4)
 
             st.subheader(':blue[Retornos según lo proyectado]')
@@ -880,11 +878,67 @@ if menu == '2022':
             html = open(benchmark, 'r', encoding='utf-8').read()
             components.html(html, height=7000, width=1200)
 
-# if menu == '2023':
-#     meses = st.sidebar.selectbox('Selecciona un mes', ('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'))
+if menu == '2023':
+    meses = st.sidebar.selectbox('Selecciona un mes', ('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'))
     
-#     def mes(mes):
-#         if meses == mes:
-#             print(st.title(f'Resultados {meses} {menu}'))
+    def mes(mes):
+        if meses == mes:
+            print(st.title(f'Resultados {meses} {menu}'))
     
-#     mes(meses)
+    mes(meses)
+    
+#---------------------------------ENERO 2023---------------------------------#
+    if meses == 'Enero':
+        submenu = st.sidebar.selectbox('Selecciona una opción', ('DeepAtlas CopyFx', 'DeepAtlas vs EURUSD'))
+
+        if submenu == 'DeepAtlas CopyFx':
+            roboforexMT4 = "Data/2023/1. Enero 2023/Registro_de_operaciones_Roboforex_Enero2023.xlsx"
+            roboforexMT4DD = "Data/2022/Acumulado/DeepAtlasCopyFx.xlsx"
+            df = pd.read_excel(roboforexMT4, sheet_name= 0)
+            df = df.set_index('datetime')
+            df['pct_change'] = df['Balance'].pct_change().cumsum() *100
+            
+            df2 = pd.read_excel(roboforexMT4DD, sheet_name= 0)
+            df2 = df2.set_index('datetime')            
+            
+            x = df.index
+            x2 = df2.index
+            y = df['Balance']
+            y2 = df['pct_change']
+            y3 = df2['max_dd'] *100
+
+            fig = go.Figure(go.Scatter(x=x, y=y, mode='lines', name='Balance', line_shape='spline'))
+            fig.update_layout(title='Crecimiento del balance DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Crecimiento ($)')
+
+            fig2 = go.Figure(go.Scatter(x=x, y=y2, mode='lines', name='Crecimiento', line_shape='hvh'))
+            fig2.update_layout(title='Crecimiento porcentual DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Crecimiento (%)')
+            
+            fig3 = go.Figure(go.Scatter(x=x2, y=y3, mode='lines', name='Drawdown máximo', line_shape='spline'))
+            fig3.update_layout(title='Drawdown máximo DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Drawdown (%)')
+            
+            st.plotly_chart(fig)
+            st.write('''
+                    El mes de enero para la cuenta de DeepAtlas CopyFx fue un mes de crecimiento, a pesar de un retiro de $1.000 usd
+                    para un cliente de The Quant Company. Este retiro fue compensado con un depósito por el mismo valor, por concepto de 
+                    la venta de un algoritmo de tick scalping para empresas de fondeo.
+                    ''')
+            
+            st.plotly_chart(fig2)
+            st.write('''
+                    El crecimiento para este mes, fue de 4.34%, lo cual representa un crecimiento de un 1.38% menos que el mes anterior.
+                    Esta baja en el crecimiento, fue debido a la baja liquidez en el mercado operado que se traduce en baja volatilidad, por
+                    lo cual, DeepAtlas, opera en una menor frecuencia.
+                    ''')
+            
+            st.plotly_chart(fig3)
+            st.write('''
+                    El drawdown máximo para este mes, fue de -0.69%, lo cual es un buen resultado, ya que de esta manera se pudo 
+                    mantener el riesgo de pérdida bajo y teniendo en cuenta los resultados de los 4 meses pasados, fue el drawdown más bajo.
+                     ''')
+
+        if submenu == 'DeepAtlas vs EURUSD':
+            st.write('''Este mes se logró un alpha de 1.84% con respecto al par de divisas EURUSD, lo cuál muestra que la estrategia de DeepAtlas CopyFx
+            es más rentable que el par de divisas en el que opera.''')
+            benchmark = "Data/2022/5. Enero2022/DAMT4_vs_EURUSD_Enero2022.html"
+            html = open(benchmark, 'r', encoding='utf-8').read()
+            components.html(html, height=7000, width=1200)
