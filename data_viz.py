@@ -905,7 +905,7 @@ if menu == '2023':
             x2 = df2.index
             y = df['Balance']
             y2 = df['pct_change']
-            y3 = [x for x in df2['d_ret'] if x < 0].cumsum() *100
+            y3 = df2[df2['d_ret'] < 0]
 
             fig = go.Figure(go.Scatter(x=x, y=y, mode='lines', name='Balance', line_shape='spline'))
             fig.update_layout(title='Crecimiento del balance DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Crecimiento ($)')
