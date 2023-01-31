@@ -893,19 +893,19 @@ if menu == '2023':
 
         if submenu == 'DeepAtlas CopyFx':
             roboforexMT4 = "Data/2023/1. Enero 2023/Registro_de_operaciones_Roboforex_Enero2023.xlsx"
-            roboforexMT4DD = "Data/2022/Acumulado/DeepAtlasCopyFx.xlsx"
+            roboforexMT4DD = "Data/2023/1. Enero 2023/calculos_finales_Enero2023.xlsx"
             df = pd.read_excel(roboforexMT4, sheet_name= 0)
             df = df.set_index('datetime')
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100
             
-            df2 = pd.read_excel(roboforexMT4DD, sheet_name= 0)
+            df2 = pd.read_excel(roboforexMT4DD, sheet_name= 1)
             df2 = df2.set_index('datetime')            
             
             x = df.index
             x2 = df2.index
             y = df['Balance']
             y2 = df['pct_change']
-            y3 = df2['max_dd'] *100
+            y3 = df2['d_ret'].pct_change().cumsum() *100
 
             fig = go.Figure(go.Scatter(x=x, y=y, mode='lines', name='Balance', line_shape='spline'))
             fig.update_layout(title='Crecimiento del balance DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Crecimiento ($)')
@@ -918,22 +918,17 @@ if menu == '2023':
             
             st.plotly_chart(fig)
             st.write('''
-                    El mes de enero para la cuenta de DeepAtlas CopyFx fue un mes de crecimiento, a pesar de un retiro de $1.000 usd
-                    para un cliente de The Quant Company. Este retiro fue compensado con un depósito por el mismo valor, por concepto de 
-                    la venta de un algoritmo de tick scalping para empresas de fondeo.
+                    pass.
                     ''')
             
             st.plotly_chart(fig2)
             st.write('''
-                    El crecimiento para este mes, fue de 4.34%, lo cual representa un crecimiento de un 1.38% menos que el mes anterior.
-                    Esta baja en el crecimiento, fue debido a la baja liquidez en el mercado operado que se traduce en baja volatilidad, por
-                    lo cual, DeepAtlas, opera en una menor frecuencia.
+                    pass.
                     ''')
             
             st.plotly_chart(fig3)
             st.write('''
-                    El drawdown máximo para este mes, fue de -0.69%, lo cual es un buen resultado, ya que de esta manera se pudo 
-                    mantener el riesgo de pérdida bajo y teniendo en cuenta los resultados de los 4 meses pasados, fue el drawdown más bajo.
+                    pass.
                      ''')
 
         if submenu == 'DeepAtlas vs EURUSD':
