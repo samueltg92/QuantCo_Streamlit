@@ -104,6 +104,8 @@ if menu == '2022':
             acumulado = 'Data/2022/1. Agosto 2022/calculos_finales_agosto2022.xlsx'
             acu = pd.read_excel(acumulado, sheet_name= 0)
             acu = acu.set_index('datetime')
+            acu.index = pd.to_datetime(acu.index)
+            acu = acu.resample('D').last().dropna()
             x = acu.index
             y = acu['Balance']
             z = acu['d_ret']
@@ -154,6 +156,8 @@ if menu == '2022':
             roboforexMT4 = "Data/2022/1. Agosto 2022/Registro_de_operaciones_Roboforex_Agosto2022.xlsx"
             df = pd.read_excel(roboforexMT4)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100
             x = df.index
             y = df['Balance']
@@ -176,6 +180,8 @@ if menu == '2022':
             ##Sam
             df = pd.read_excel(binance, sheet_name= 0)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100
             x = df.index
             y = df['Balance']
@@ -186,6 +192,8 @@ if menu == '2022':
             ##Thiago
             df2 = pd.read_excel(binance, sheet_name= 1)
             df2 = df2.set_index('datetime')
+            df2.index = pd.to_datetime(df2.index)
+            df2 = df2.resample('D').last().dropna()
             df2['pct_change'] = df2['Balance'].pct_change().cumsum() *100
             x2 = df2.index
             y3 = df2['Balance']
@@ -209,6 +217,8 @@ if menu == '2022':
             acumulado = 'Data/2022/2. Septiembre2022/calculos_finales.xlsx'
             acu = pd.read_excel(acumulado, sheet_name= 0)
             acu = acu.set_index('mdate')
+            acu.index = pd.to_datetime(acu.index)
+            acu = acu.resample('D').last().dropna()
             x = acu.index
             y = acu['Balance']
             z = acu['d_ret']
@@ -269,6 +279,8 @@ if menu == '2022':
             roboforexMT4 = "Data/2022/2. Septiembre2022/Registro_de_operaciones_Roboforex_Septiembre2022.xlsx"
             df = pd.read_excel(roboforexMT4)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100
             x = df.index
             y = df['Balance']
@@ -290,6 +302,8 @@ if menu == '2022':
             roboforexMT5 = "Data/2022/2. Septiembre2022/Registro_de_operaciones_RoboforexMT5_Septiembre2022.xlsx"
             df = pd.read_excel(roboforexMT5)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100
             x = df.index
             y = df['Balance']
@@ -313,6 +327,8 @@ if menu == '2022':
             ##Sam
             df = pd.read_excel(binance, sheet_name= 0)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100
             x = df.index
             y = df['Balance']
@@ -323,6 +339,8 @@ if menu == '2022':
             ##Thiago
             df2 = pd.read_excel(binance, sheet_name= 1)
             df2 = df2.set_index('datetime')
+            df2.index = pd.to_datetime(df2.index)
+            df2 = df2.resample('D').last().dropna()
             df2['pct_change'] = df2['Balance'].pct_change().cumsum() *100
             x2 = df2.index
             y3 = df2['Balance']
@@ -335,6 +353,8 @@ if menu == '2022':
             roboforex7369598 = 'Data/2022/2. Septiembre2022/Registro_de_operaciones_7369598.xlsx'
             df = pd.read_excel(roboforex7369598, sheet_name= 0)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100            
             x = df.index
             y = df['Balance']
@@ -355,6 +375,8 @@ if menu == '2022':
             roboforex72116376 = 'Data/2022/2. Septiembre2022/Registro_de_operaciones_72116376.xlsx'
             df = pd.read_excel(roboforex72116376, sheet_name= 0)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100            
             x = df.index
             y = df['Balance']
@@ -386,6 +408,8 @@ if menu == '2022':
             acumulado = 'Data/2022/3. Octubre2022/calculos_finales_octubre2022.xlsx'
             acu = pd.read_excel(acumulado, sheet_name= 0)
             acu = acu.set_index('mdate')
+            acu.index = pd.to_datetime(acu.index)
+            acu = acu.resample('D').last().dropna()
             x = acu.index
             y = acu['Balance']
             z = acu['d_ret']
@@ -444,6 +468,8 @@ if menu == '2022':
             roboforexMT4 = "Data/2022/3. Octubre2022/Registro_de_operaciones_Roboforex_Octubre2022.xlsx"
             df = pd.read_excel(roboforexMT4)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100
             x = df.index
             y = df['Balance']
@@ -463,6 +489,8 @@ if menu == '2022':
             roboforexMT5 = "Data/2022/3. Octubre2022/Registro_de_operaciones_RoboforexMT5_Octubre2022.xlsx"
             df = pd.read_excel(roboforexMT5)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100
             x = df.index
             y = df['Balance']
@@ -481,6 +509,8 @@ if menu == '2022':
     
             df = pd.read_excel(binance, sheet_name= 0)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100
             x = df.index
             y = df['Balance']
@@ -493,6 +523,8 @@ if menu == '2022':
             roboforex7369598 = 'Data/2022/3. Octubre2022/Registro_de_operaciones_7369598.xlsx'
             df = pd.read_excel(roboforex7369598, sheet_name= 0)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100            
             x = df.index
             y = df['Balance']
@@ -513,6 +545,8 @@ if menu == '2022':
             roboforex72116376 = 'Data/2022/3. Octubre2022/Registro_de_operaciones_72116376.xlsx'
             df = pd.read_excel(roboforex72116376, sheet_name= 0)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100            
             x = df.index
             y = df['Balance']
@@ -591,6 +625,8 @@ if menu == '2022':
             roboforexMT4 = "Data/2022/4. Noviembre2022/Registro_de_operaciones_Roboforex_Noviembre2022.xlsx"
             df = pd.read_excel(roboforexMT4)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100
             x = df.index
             y = df['Balance']
@@ -599,7 +635,7 @@ if menu == '2022':
             fig = go.Figure(go.Scatter(x=x, y=y, mode='lines', name='Balance', line_shape='spline'))
             fig.update_layout(title='Crecimiento del balance DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Crecimiento ($)')
 
-            fig2 = go.Figure(go.Scatter(x=x, y=y2, mode='lines', name='Crecimiento', line_shape='hvh'))
+            fig2 = go.Figure(go.Scatter(x=x, y=y2, mode='lines', name='Crecimiento', line_shape='spline'))
             fig2.update_layout(title='Crecimiento porcentual DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Crecimiento (%)')
             
             st.plotly_chart(fig)
@@ -609,6 +645,8 @@ if menu == '2022':
             roboforexMT5 = "Data/2022/4. Noviembre2022/Registro_de_operaciones_RoboforexMT5_Noviembre2022.xlsx"
             df = pd.read_excel(roboforexMT5)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            #df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100
             x = df.index
             y = df['Balance']
@@ -641,6 +679,8 @@ if menu == '2022':
             roboforex7369598 = 'Data/2022/4. Noviembre2022/Registro_de_operaciones_7369598.xlsx'
             df = pd.read_excel(roboforex7369598, sheet_name= 0)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100            
             x = df.index
             y = df['Balance']
@@ -661,6 +701,8 @@ if menu == '2022':
             roboforex72116376 = 'Data/2022/4. Noviembre2022/Registro_de_operaciones_72116376.xlsx'
             df = pd.read_excel(roboforex72116376, sheet_name= 0)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100            
             x = df.index
             y = df['Balance']
@@ -689,6 +731,7 @@ if menu == '2022':
 #---------------------------------DICIEMBRE---------------------------------#
     if meses == 'Diciembre':
         submenu = st.sidebar.selectbox('Selecciona una opción', ('Acumulado', 'DeepAtlas CopyFx', 'DeepAtlas MT5', 'Roboforex 7369598', 'Roboforex 72116376', 'DeepAtlas vs EURUSD'))
+        
         if submenu == 'Acumulado':
             acumulado = 'Data/2022/5. Diciembre2022/calculos_finales.xlsx'
             acu = pd.read_excel(acumulado, sheet_name= 0)
@@ -743,10 +786,14 @@ if menu == '2022':
             roboforexMT4DD = "Data/2022/Acumulado/DeepAtlasCopyFx.xlsx"
             df = pd.read_excel(roboforexMT4, sheet_name= 0)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100
             
             df2 = pd.read_excel(roboforexMT4DD, sheet_name= 0)
-            df2 = df2.set_index('datetime')            
+            df2 = df2.set_index('datetime')
+            df2.index = pd.to_datetime(df2.index)
+            df2 = df2.resample('D').last().dropna()            
             
             x = df.index
             x2 = df2.index
@@ -843,6 +890,8 @@ if menu == '2022':
             roboforex72116376 = 'Data/2022/5. Diciembre2022/Registro_de_operaciones_72116376.xlsx'
             df = pd.read_excel(roboforex72116376, sheet_name= 0)
             df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
             df['pct_change'] = df['Balance'].pct_change().cumsum() *100            
             x = df.index
             y = df['Balance']
