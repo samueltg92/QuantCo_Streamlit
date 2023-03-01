@@ -998,7 +998,7 @@ if menu == '2023':
             html = open(benchmark, 'r', encoding='utf-8').read()
             components.html(html, height=7000, width=1200)
 
-    if 'meses' == 'Febrero':
+    if meses == 'Febrero':
         
         submenu = st.sidebar.selectbox('Selecciona una opción', ('DeepAtlas CopyFx', 'DeepAtlas vs EURUSD'))
 
