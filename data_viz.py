@@ -940,6 +940,7 @@ if menu == '2023':
     
 #---------------------------------ENERO 2023---------------------------------#
     if meses == 'Enero':
+
         submenu = st.sidebar.selectbox('Selecciona una opción', ('DeepAtlas CopyFx', 'DeepAtlas vs EURUSD'))
 
         if submenu == 'DeepAtlas CopyFx':
@@ -994,5 +995,50 @@ if menu == '2023':
             # st.write('''Este mes se logró un alpha de 1.84% con respecto al par de divisas EURUSD, lo cuál muestra que la estrategia de DeepAtlas CopyFx
             # es más rentable que el par de divisas en el que opera.''')
             benchmark = "Data/2023/1. Enero 2023/DAMT4_vs_EURUSD_Enero2023.html"
+            html = open(benchmark, 'r', encoding='utf-8').read()
+            components.html(html, height=7000, width=1200)
+
+    if 'meses' == 'FSebrero':
+        
+        submenu = st.sidebar.selectbox('Selecciona una opción', ('DeepAtlas CopyFx', 'DeepAtlas vs EURUSD'))
+
+        if submenu == 'DeepAtlas CopyFx':
+            roboforexMT4 = "Data/2023/1. Febrero 2023/Registro_de_operaciones_Roboforex_Febrero2023.xlsx"
+            roboforexMT4DD = "Data/2023/1. Febrero 2023/calculos_finales_Febrero2023.xlsx"
+            
+            df = pd.read_excel(roboforexMT4, sheet_name= 0)
+            df = df.set_index('datetime')
+            df.index = pd.to_datetime(df.index)
+            df = df.resample('D').last().dropna()
+
+            # df['pct_change'] = df['Balance'].pct_change().cumsum() *100
+            
+            df2 = pd.read_excel(roboforexMT4DD, sheet_name= 1)
+            df2 = df2.set_index('datetime')
+            df2.index = pd.to_datetime(df2.index)            
+            df2 = df2.resample('D').last().dropna()
+            
+            x = df.index
+            x2 = df2.index
+            y = df['Balance']
+            y2 = df['Balance'].pct_change().cumsum() *100
+            y3 = y2.loc[y2 < 0] 
+
+            fig = go.Figure(go.Scatter(x=x, y=y, mode='lines', name='Balance', line_shape='spline'))
+            fig.update_layout(title='Crecimiento del balance DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Crecimiento ($)')
+
+            fig2 = go.Figure(go.Scatter(x=x, y=y2, mode='lines', name='Crecimiento', line_shape='hvh'))
+            fig2.update_layout(title='Crecimiento porcentual DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Crecimiento (%)')
+            
+            fig3 = go.Figure(go.Scatter(x=x2, y=y3, mode='lines', name='Drawdown máximo', line_shape='spline'))
+            fig3.update_layout(title='Drawdown máximo DeepAtlas CopyFx', xaxis_title='Fecha', yaxis_title='Drawdown (%)')
+                      
+            
+            st.plotly_chart(fig)
+        
+        if submenu == 'DeepAtlas vs EURUSD':
+            # st.write('''Este mes se logró un alpha de 1.84% con respecto al par de divisas EURUSD, lo cuál muestra que la estrategia de DeepAtlas CopyFx
+            # es más rentable que el par de divisas en el que opera.''')
+            benchmark = "Data/2023/1. Febrero 2023/DAMT4_vs_EURUSD_Febrero2023.html"
             html = open(benchmark, 'r', encoding='utf-8').read()
             components.html(html, height=7000, width=1200)
