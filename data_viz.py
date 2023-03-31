@@ -998,13 +998,13 @@ if menu == '2023':
             html = open(benchmark, 'r', encoding='utf-8').read()
             components.html(html, height=7000, width=1200)
 
-    if 'meses' == 'FSebrero':
+    if meses == 'Febrero':
         
         submenu = st.sidebar.selectbox('Selecciona una opción', ('DeepAtlas CopyFx', 'DeepAtlas vs EURUSD'))
 
         if submenu == 'DeepAtlas CopyFx':
-            roboforexMT4 = "Data/2023/1. Febrero 2023/Registro_de_operaciones_Roboforex_Febrero2023.xlsx"
-            roboforexMT4DD = "Data/2023/1. Febrero 2023/calculos_finales_Febrero2023.xlsx"
+            roboforexMT4 = "Data/2023/2. Febrero2023/Registro_de_operaciones_Roboforex_Febrero2023.xlsx"
+            roboforexMT4DD = "Data/2023/2. Febrero2023/calculos_finales.xlsx"
             
             df = pd.read_excel(roboforexMT4, sheet_name= 0)
             df = df.set_index('datetime')
@@ -1035,10 +1035,20 @@ if menu == '2023':
                       
             
             st.plotly_chart(fig)
+
+            st.plotly_chart(fig2)
+            st.write('''
+                    El mes de febrero para la cuenta de DeepAtlas CopyFx fue un mes donde se redujo ligeramente el balance, se tuvo una perdida de 78 dólares en total de la cuenta, lo cual
+                    representó una reducción total del 0.71%.
+                    ''')
+
+            st.plotly_chart(fig3)
+
+
         
         if submenu == 'DeepAtlas vs EURUSD':
             # st.write('''Este mes se logró un alpha de 1.84% con respecto al par de divisas EURUSD, lo cuál muestra que la estrategia de DeepAtlas CopyFx
             # es más rentable que el par de divisas en el que opera.''')
-            benchmark = "Data/2023/1. Febrero 2023/DAMT4_vs_EURUSD_Febrero2023.html"
+            benchmark = "Data/2023/2. Febrero2023/DAMT4_vs_EURUSD_Febrero2023.html"
             html = open(benchmark, 'r', encoding='utf-8').read()
             components.html(html, height=7000, width=1200)
